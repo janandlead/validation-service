@@ -8,4 +8,7 @@ import com.durgasoft.validation_service.entity.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
+	boolean existsByEmail(String email);
+	
+	Employee  findByEmail(String email);
 }

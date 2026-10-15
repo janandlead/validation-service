@@ -28,13 +28,14 @@ The GitHub configuration uses environment variables; the original development wo
 }
 ```
 
-On successful persistence, the API returns HTTP 200 with the three employee fields. Invalid input returns HTTP 400. First name must be nonblank and 3â€“10 characters; last name must be nonblank; email must be nonblank and pass email validation.
+On successful persistence, the API returns HTTP 200 with the three employee fields. Invalid input returns HTTP 400. First name must be nonblank and 3–10 characters; last name must be nonblank; email must be nonblank and pass email validation.
 
 ## Study notes
 
 See [PROJECT_NOTES.md](PROJECT_NOTES.md) for records, validation timing, execution flow, persistence, and practice requests.
 
+See [Exception handling and validation notes](EXCEPTION_HANDLING_AND_VALIDATION_NOTES.md) for custom exceptions, global handlers, validation rules, and architecture and request-flow diagrams.
+
 ## Verification status
 
 The existing test checks application context loading. The latest local compilation attempt failed with an error referencing the cached Spring Context dependency; successful compilation and live API behavior have not yet been verified.
-

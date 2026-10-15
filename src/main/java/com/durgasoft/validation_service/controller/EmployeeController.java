@@ -1,9 +1,11 @@
 package com.durgasoft.validation_service.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.durgasoft.validation_service.dto.EmployeeRequest;
@@ -28,5 +30,12 @@ public class EmployeeController {
 		EmployeeResponse employeeResponse = employeeService.addEmployee(employeeRequest);
 		return ResponseEntity.ok(employeeResponse);
 	}
-	
+
+	@GetMapping
+	public void fetchEmployee(@RequestParam String email) {
+		System.out.println("Inside EmployeeController -> addEmployee(-)");
+		employeeService.fetchEmployee(email);
+
+	}
+
 }

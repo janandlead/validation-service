@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.durgasoft.validation_service.dto.EmployeeRequest;
 import com.durgasoft.validation_service.dto.EmployeeResponse;
 import com.durgasoft.validation_service.entity.Employee;
+import com.durgasoft.validation_service.exception.DuplicateEmployeeException;
+import com.durgasoft.validation_service.exception.EmployeeNotFoundException;
 import com.durgasoft.validation_service.repository.EmployeeRepository;
 
 @Service
@@ -20,14 +22,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public EmployeeResponse addEmployee(EmployeeRequest employeeRequest) {
-		// TODO Auto-generated method stub
-		// Builder Pattern
+		
+		
+		boolean emailExist= employeeRepository.existsByEmail(employeeRequest.email());
+		if(emailExist) {
+			throw new DuplicateEmployeeException("Employee already exist with email :"+employeeRequest.email());
+		}
 		
 		Employee employee=Employee.builder()
 				.firstName(employeeRequest.firstName())
 				.lastName(employeeRequest.lastName())
 				.email(employeeRequest.email())
 				.build();
+		
+		
 						
 		Employee respEmployee=employeeRepository.save(employee);
 		
@@ -36,6 +44,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 				respEmployee.getLastName(),
 				respEmployee.getEmail());
 	
+
+	}
+	
+	public void fetchEmployee(String email) {
+		
+		Employee employee = employeeRepository.findByEmail(email);
+		if (employee == null) {
+			throw new EmployeeNotFoundException("Employee not found with this email :"+email);
+		}
+		
+
 
 	}
 

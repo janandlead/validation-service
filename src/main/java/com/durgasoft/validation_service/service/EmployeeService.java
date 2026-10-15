@@ -6,5 +6,7 @@ import com.durgasoft.validation_service.dto.EmployeeResponse;
 public interface EmployeeService {
 	
 	public EmployeeResponse addEmployee(EmployeeRequest employeeRequest);
+	
+	public void fetchEmployee(String email);
 
 }
